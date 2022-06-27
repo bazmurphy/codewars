@@ -27,7 +27,7 @@
 // * 'R', [3, 2, 1, 2]      ->  [1, 2, 2, 3]
 // * 'L', [1, 4, 5, 3, 5 ]  ->  [5, 5, 4, 3, 1]
 
-const flip = (d, a ) => {
+let flip = (d, a) => {
   
 //   if (d === 'R') {
 //     return a.sort((a, b) => a - b)
@@ -47,35 +47,35 @@ console.log(flip('L', [1, 4, 5, 3, 5]));
 
 
 // Solution 1
-const flip = (d, a) => a.sort((x, y) => d === 'R' ? x - y : y - x);
+let flip = (d, a) => a.sort((x, y) => d === 'R' ? x - y : y - x);
 
 
 // Solution 2
-const flip = (d, a) => {
+let flip = (d, a) => {
     if (d === 'R') return a.sort((a, b) => a - b);
     if (d === 'L') return a.sort((a, b) => b - a);
 }
 
 
 // Solution 3
-const flip = (direction, arr) => {
+let flip = (direction, arr) => {
     return arr.sort((a, b) => direction === 'R' ? a - b : b - a);
 }
 
 
 // Solution 4
-const flip = (d, a) => d === 'R' ? a.sort((a, b) => a - b) : a.sort((a, b) => b - a)
+let flip = (d, a) => d === 'R' ? a.sort((a, b) => a - b) : a.sort((a, b) => b - a)
 
 
 // Solution 5
-const flip = (d, a) => {
+let flip = (d, a) => {
     let cmp = d == 'L' ? (x, y) => y - x : (x, y) => x - y;
     return a.slice().sort(cmp);
 }
 
 
 // Solution 6
-const flip = (d, a) => {
+let flip = (d, a) => {
     for (let i = 0; i < a.length; i++) {
         let t = false;
         for (let j = 0; j < a.length - 1; j++) {
@@ -94,7 +94,7 @@ const flip = (d, a) => {
 
 
 // Solution 7
-const flip = (direction, columns) => (
+let flip = (direction, columns) => (
     [...columns].sort((A, Z) => {
         if (direction === 'R') return A - Z
         if (direction === 'L') return Z - A
@@ -103,12 +103,12 @@ const flip = (direction, columns) => (
 
 
 // Solution 8
-const flip = (d, a) =>
+let flip = (d, a) =>
     a.sort((a, b) => d === `R` ? a - b : b - a);
 
 
 // Solution 9
-const flip = (d, a) => {
+let flip = (d, a) => {
     if (d == "R")
         a.sort((b, c) => b - c);
     else
@@ -118,13 +118,13 @@ const flip = (d, a) => {
 
 
 // Solution 10
-const flip = (d, a) => d === 'L' ? a.sort((x, y) => y - x) : a.sort((x, y) => x - y)
+let flip = (d, a) => d === 'L' ? a.sort((x, y) => y - x) : a.sort((x, y) => x - y)
 
 
 // Solution 11
-const flip = (d, a) => a.sort((a, b) => (a - b) * { R: 1, L: -1 }[d])
+let flip = (d, a) => a.sort((a, b) => (a - b) * { R: 1, L: -1 }[d])
 
 
 // Solution 12
-const sorted = ns => ns.sort((a, b) => a - b);
-const flip = (d, ns) => d == 'R' ? sorted(ns) : sorted(ns).reverse();
+let sorted = ns => ns.sort((a, b) => a - b);
+let flip = (d, ns) => d == 'R' ? sorted(ns) : sorted(ns).reverse();
