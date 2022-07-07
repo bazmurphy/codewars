@@ -1,0 +1,159 @@
+// Grader
+
+// Create a function that takes a number as an argument and returns a grade based on that number.
+// Score 	        Grade
+// Anything greater than 1 or less than 0.6 	"F"
+// 0.9 or greater 	"A"
+// 0.8 or greater 	"B"
+// 0.7 or greater 	"C"
+// 0.6 or greater 	"D"
+
+// Examples:
+
+// grader(0)   should be "F"
+// grader(1.1) should be "F"
+// grader(0.9) should be "A"
+// grader(0.8) should be "B"
+// grader(0.7) should be "C"
+// grader(0.6) should be "D"
+
+function grader(score) {
+    if (score > 1 || score < 0.6) {
+        return 'F';
+    } else if (score >= 0.9) {
+        return 'A';
+    } else if (score >= 0.8) {
+        return 'B'
+    } else if (score >= 0.7) {
+        return 'C'
+    } else if (score >= 0.6) {
+        return 'D'
+    }
+}
+
+
+console.log(grader(0.7));
+// "C"
+console.log(grader(0.9));
+// "A"
+console.log(grader(0.6));
+// "D"
+
+
+
+// Solution 1
+function grader(score) {
+    if (score > 1 || score < 0.6) return 'F'
+    if (score < 0.7) return 'D'
+    if (score < 0.8) return 'C'
+    if (score < 0.9) return 'B'
+    return 'A'
+}
+
+
+// Solution 2
+function grader(score) {
+    if (score > 1 || score < 0.6) return 'F';
+    else if (score >= 0.9) return 'A';
+    else if (score >= 0.8) return 'B';
+    else if (score >= 0.7) return 'C';
+    else if (score >= 0.6) return 'D';
+}
+
+
+// Solution 3
+grader = s => s > 1 || s < 0.6 ? 'F' : s < 0.7 ? 'D' : s < 0.8 ? 'C' : s < 0.9 ? 'B' : 'A';
+
+
+// Solution 4
+const grader = s => {
+    switch (true) {
+        case (s > 1):
+            return 'F'
+        case (s >= 0.9):
+            return 'A'
+        case (s >= 0.8):
+            return 'B'
+        case (s >= 0.7):
+            return 'C'
+        case (s >= 0.6):
+            return 'D'
+        default:
+            return 'F'
+    }
+}
+
+
+// Solution 5
+const grader = score =>
+    score < 0.6 || score > 1 ? `F` : score < 0.7 ? `D` : score < 0.8 ? `C` : score < 0.9 ? `B` : `A`;
+
+
+// Solution 6
+var grader = sc => {
+    if (sc < 1 && sc >= 0.9) return "A";
+    if (sc < 0.9 && sc >= 0.8) return "B";
+    if (sc < 0.8 && sc >= 0.7) return "C";
+    if (sc < 0.7 && sc >= 0.6) return "D";
+    if (sc > 1 || sc < 0.6) return "F";
+    return 'A';
+}
+
+
+// Solution 7
+function grader(score) {
+    if (score === 1) return "A";
+    return ["D", "C", "B", "A"][Math.floor(score * 10) - 6] || "F";
+}
+
+
+// Solution 8
+function grader(score) {
+  return score < .6 || score > 1 ? 'F'
+    : score < .7 ? 'D'
+    : score < .8 ? 'C'
+    : score < .9 ? 'B'
+    : 'A'
+  
+}
+
+
+// Solution 9
+function grader(score) {
+    return score > 1 || score < .6 ? "F" : score >= .9 ? "A" : score >= .8 ? "B" : score >= .7 ? "C" : score >= .6 ? "D" : null;
+}
+
+
+// Solution 10
+function grader(score) {
+  if (score>1||score<0.6) return "F"
+  if (score<0.7) return "D"
+  if (score<0.8) return "C"
+  if (score<0.9) return "B"
+  else
+  return "A"
+}
+
+
+// Solution 11
+function grader(score) {
+  
+  if(score > 1 || score < 0.6){
+    return 'F'
+  }
+  else if(score < 0.7){
+    return 'D'
+  }
+  else if(score < 0.8){
+    return 'C'
+  }
+   else if(score < 0.9){
+    return 'B'
+  }
+  return 'A'
+  
+}
+
+
+// Solution 12
+grader = score => score > 1 || score < .6 ? 'F' : score < .7 ? 'D' : score < .8 ? 'C' : score < .9 ? 'B' : 'A'
