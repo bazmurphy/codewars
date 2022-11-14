@@ -12,9 +12,9 @@ function oddCount(n){
   return Math.floor(n / 2);
 }
 
-console.log(oddCount(15))
+console.log(oddCount(15));
 // 7
-console.log(oddCount(15023))
+console.log(oddCount(15023));
 // 7511
 
 
@@ -30,15 +30,15 @@ function oddCount(n){
 
 // Solution 3
 function oddCount(n){
- /*
-  var returnArray = [];
-  for(var i=1;i<n;i=i+2) {
-    returnArray.push(i);
-  }
-  return returnArray.length;
- */
- return parseInt(n/2);
-}
+  /*
+   var returnArray = [];
+   for(var i=1;i<n;i=i+2) {
+     returnArray.push(i);
+   }
+   return returnArray.length;
+  */
+  return parseInt(n/2);
+ }
 
 
 // Solution 4
@@ -47,6 +47,34 @@ oddCount=n=>Math.floor(n/2)
 
 // Solution 5
 oddCount=_=>this['Math']['floor'](_/[-~[]+!!{}][~~{}])
+
+// oddCount = _ => _ / 2; is the same thing as
+
+// function oddCount(_) {
+//   return _ / 2;
+// };
+
+// You can use char _ as a variable;
+
+// this without context == window;
+
+// window object contains all global variables; Math.floor == window.Math.floor;
+
+// You can access property of object not only with dot, but with brackets as well; obj['prop'] == obj.prop;
+
+// [] == -1, it's a dynamic typing feature. So -[] == --1 == 1;
+
+// !!{} == true, that means 1 + true == 1 + 1 == 2;
+
+// ~~{} == ~-1 == 0;
+
+// [2][0] == 2;
+
+// so finally it's similar to
+
+// function oddCount(n) {
+// return window.Math.floor(n / 2);
+// };
 
 
 // Solution 6
@@ -86,3 +114,13 @@ oddCount = x => Math.floor(x / 2);
 
 // Solution 12
 function oddCount(n){ return Math.floor(n/2) }
+
+
+// Solution 13
+function oddCount(num){
+  return Math.floor(num/2);
+}
+
+
+// Solution 14
+let oddCount = n => (n - n % 2) / 2
