@@ -21,77 +21,239 @@
 //   "***********"
 // ]
 
+
+function towerBuilder(nFloors) {
+  let output = [];
+
+  a = 1;
+  b = nFloors - 1;
+
+  for (let i = 1; i <= nFloors; i++) {
+    output.push(" ".repeat(b) + "*".repeat(a) + " ".repeat(b))
+    a += 2;
+    b--;
+  }
+
+  return output;
+}
+
+
+// populate an array with asterisks
+// use the total stars and total blanks as the metrics
+// populate the stars first
+// then unshift and push the blank spaces
+// start with the final row
+// then join it all together
+
+// LIMITER length of all strings / arrays = (nFloors * 2) - 1;
+// TOTAL number of strings / arrays = nFloors;
+
 // function towerBuilder(nFloors) {
 
-//     // create 3 arrays
-//     // length of string is 2 * nFloors - 1
-//     // empty spaces either side is nFloors - i;
+    // 1f = 1  10 blank
+    // 2f = 3   8 blank
+    // 3f = 5   6 blank
+    // 4f = 7   4 blank    
+    // 5f = 9   2 blank
+    // 6f = 11  0 blank
 
-//     let tower = [];
+    // let output = [];
 
-//     for (let i = 1; i <= nFloors; i++) {
+    // let maxSize = (nFloors * 2) - 1;
 
-//         // console.log(`loop ${i} nFloors ${i}`)
-//         let floor = [];
-//         let lengthOfString = (2 * nFloors) -1;
+    // let currentFloor = nFloors;
 
-//         for (let j = 1; j <= lengthOfString; j++) {
-//             floor.push("*");
-//         }
-//         // console.log(floor);
+    // for (let i = 0; i < nFloors; i++) {
+       
+    //     let subelement = [];
 
-//         // if (floor.length < (2 * nFloors) -1) {
-//         //     floor.unshift("space");
-//         //     floor.push("space");
-//         // }
-//         // console.log(floor);
+    //     for (let i = 0; i < maxSize ; i++) {
+    //         subelement.push('*')
+    //     }
+                               
+    //     for (let i = subelement.length; i < maxSize ; i += 2) {
+    //         subelement.unshift(' ')
+    //         subelement.push(' ')
+    //     }
+        
+    //     output.shift(subelement);
 
-//         tower.unshift(floor.toString());
-//     }
+    //     currentFloor--;
     
-//     // console.log("tower:");
-//     // console.log(tower);
-//     return tower;
+    // }
 
-//     // calculate each steps number of asterisks
-//     // USE THE TOTAL LENGTH OF THE STRING as a condition
-//     // TO ADD SPACE AT THE START AND END UNTIL THE LENGTH IS MET
-//     // JOIN IT ALL AS ONE STRING
+    // return output;
 
 // }
 
+console.log(towerBuilder(1));
+// ["*"]
+console.log(towerBuilder(2));
+// [" * ", "***"]
+console.log(towerBuilder(3));
+// ["  *  ", " *** ", "*****"]
 
-function towerBuilder(nFloors) {
 
-    let tower = [];
-
-    for (let i = 1; i <= nFloors; i++) {
-
-        let floor = [];
-        let temp = (nFloors * 2) - 1;
-        
-        for (let j = 1; j <= temp; j++) {
-
-            // USE THE ITERATOR J
-            // TO DETERMINE HOW MANY TIMES TO PUSH AN ASTERISK
-            // IF ITS LOOP 1, THEN ONLY ONCE
-            // IF ITS LOOP 2, THEN THREE TIMES
-            // IF ITS LOOP 3, THEN FIVE TIMES
-
-            floor.push("*");
-        }
-        console.log(floor);
-
-        // tower.push(floor.toString());
-    }
-
-    // return tower;
-    
+// Solution 1
+function towerBuilder(n) {
+  return Array.from({length: n}, function(v, k) {
+    const spaces = ' '.repeat(n - k - 1);
+    return spaces + '*'.repeat(k + k + 1) + spaces;
+  });
 }
 
-// console.log(towerBuilder(1));
-// // ["*"]
-// console.log(towerBuilder(2));
-// // [" * ","***"]
-console.log(towerBuilder(3));
-// ["  *  "," *** ","*****"]
+
+// Solution 2
+function towerBuilder(nFloors) {
+  var tower = [];
+  for (var i = 0; i < nFloors; i++) {
+    tower.push(" ".repeat(nFloors - i - 1)
+             + "*".repeat((i * 2)+ 1)
+             + " ".repeat(nFloors - i - 1));
+  }
+  return tower;
+}
+
+
+// Solution 3
+function towerBuilder(n) {
+  return [...Array(n)].map((_,i)=>" ".repeat(n-1-i)+"*".repeat(i*2+1)+" ".repeat(n-1-i))
+}
+
+
+// Solution 4
+function towerBuilder(nFloors) {
+  // build here
+  let space,star, tower = [];
+  for(i = 1; i <= nFloors; i++){
+    space = " ".repeat(nFloors - i);
+    star  = "*".repeat((2*i) - 1);
+    tower.push(`${space}${star}${space}`);
+  }
+  return tower
+}
+
+
+// Solution 5
+function towerBuilder(nFloors) {
+  var result = [];
+  var starNumber = 1;
+  for (i=1; i<=nFloors; i++) {
+    result[i-1] = " ".repeat(nFloors-i) + "*".repeat(starNumber) + " ".repeat(nFloors-i);
+    starNumber += 2;
+  }
+  return result;
+}
+
+
+// Solution 6
+const towerBuilder = n =>
+  [...Array(n)].map((_, i) => ' '.repeat(n-i-1) + '*'.repeat(i*2+1) + ' '.repeat(n-i-1)) 
+
+
+// Solution 7
+const towerBuilder = (nFloors) => Array
+  .from(Array(nFloors).keys())
+  .map(i => 2 * i + 1)
+  .reverse()
+  .map((i, index) => " ".repeat(index) + '*'.repeat(i) + " ".repeat(index))
+  .reverse();
+
+
+// Solution 8
+function towerBuilder(nFloors) {
+  const repeat = ch => n => Array(n+1).join(ch);
+  const space = repeat(' ');
+  const star = repeat('*');
+  const center = length => s => space((length-s.length)/2) + s + space((length-s.length)/2);
+  const baseSize = nFloors*2 - 1;
+  const buildFloor = (_, i) => star(2*i+1);
+  
+  return Array.from({length:nFloors}, buildFloor).map(center(baseSize));
+}
+
+
+// Solution 9
+function towerBuilder(Fl) {
+  let arr = [];
+  for (var i = 0; i < Fl; i++){
+    arr[i] = " ".repeat(Fl-i-1) + "*".repeat(i*2+1) + " ".repeat(Fl-i-1)
+  }
+  return arr
+}
+
+
+// Solution 10
+function towerBuilder(nFloors) {
+  var tower = [];
+  
+  for (var i = 1; i <= nFloors; i++) {
+    tower.push(makeFloor((nFloors*2),(i*2)));    
+  }
+  
+  return tower;
+}
+
+function makeFloor(width, stars) {
+  var padding = Math.floor((width - stars)/2)+1;
+  return Array(padding).join(' ') + Array(stars).join('*') + Array(padding).join(' ');            
+}
+
+
+// Solution 11
+function towerBuilder(nFloors) {
+  var arrTower = [],
+      blocks;
+  
+  function buildFlour(blocks) {
+    var maxSize = nFloors == 1 ? 1 : nFloors * 2 - 1,
+        floor = '';
+
+    for(var i = 0; i < maxSize; i++) {
+      var space = (maxSize - blocks) / 2;
+      
+      if(maxSize - blocks !== 0) {
+          if((i + 1) <= space || (i + 1) > blocks + space) {
+            floor += ' ';
+          } else {
+            floor += '*';
+          }
+      } else {
+        floor += '*';
+      }
+    }
+    
+    return floor;
+  }
+  
+  for(var i = 0; i < nFloors; i++) {
+    var blocks = i == 0 ? 1 : blocks + 2;
+    
+    arrTower.push(buildFlour(blocks));
+  }
+  
+  return arrTower;
+}
+
+
+// Solution 12
+function towerBuilder(n) {  
+  return Array.from({length : n}).map((v,i)=>' '.repeat(n-i-1)+'*'.repeat(2*(i)+1)+' '.repeat(n-i-1));
+}
+
+
+// Solution 13
+function towerBuilder(nFloors) {
+  let i =-1;let j=nFloors;
+  return new Array(nFloors).fill(0).map(x=>{return ' '.repeat(--j)+'*'.repeat(i+=2)+' '.repeat(j)});
+}
+
+
+// Solution 14
+function towerBuilder(nFloors) {
+  let floors = [];
+  for (let i = 0, n = nFloors - 1; i < nFloors; ++i, --n) {
+      floors.push(Array(n + 1).join(" ") + Array(i * 2 + 2).join("*") + Array(n + 1).join(" "));
+  }
+  return floors;
+}
